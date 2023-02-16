@@ -1,0 +1,10 @@
+.input{
+    border-radius: 10%;
+    border-color: tomato;
+    border-style: dashed;
+}
+
+.button{
+    color: aquamarine;
+    background-color: violet;
+}
