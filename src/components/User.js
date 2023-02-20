@@ -44,7 +44,7 @@ class User extends Component {
                   isVisible
                     ? { backgroundColor: "#94f7f1", color: "#ff58e9" }
                     : null
-                }
+                } 
               >
                 <div
                   className="card-header d-flex justify-content-between"
