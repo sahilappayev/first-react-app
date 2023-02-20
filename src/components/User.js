@@ -28,7 +28,8 @@ class User extends Component {
 
   render() {
     // Destructing
-    const { id, name, salary, department } = this.props;
+    const { name, salary, department } = this.props;
+    const isVisible = this.state.isVisible;
 
     return (
       <UserConsumer>
@@ -37,7 +38,14 @@ class User extends Component {
 
           return (
             <div className="col-md-8 mb-4">
-              <div className="card">
+              <div
+                className="card"
+                style={
+                  isVisible
+                    ? { backgroundColor: "#94f7f1", color: "#ff58e9" }
+                    : null
+                }
+              >
                 <div
                   className="card-header d-flex justify-content-between"
                   onClick={this.onclickEvent}
