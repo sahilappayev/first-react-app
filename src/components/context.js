@@ -5,13 +5,19 @@ const UserContext = React.createContext();
 
 // Reducer
 const reducer = (state, action) => {
+  console.log("ACTION: ", action);
   switch (action.type) {
     case "DELETE_USER":
       return {
         ...state,
         users: state.users.filter((user) => action.payload !== user.id),
       };
-    default: 
+    case "ADD_USER":
+      return {
+        ...state,
+        users: [...state.users, action.payload],
+      };
+    default:
       return state;
   }
 };
@@ -21,28 +27,28 @@ export class UserProvider extends Component {
   state = {
     users: [
       {
-        id: 1,
+        id: "test-1",
         name: "Sahil Appayev",
         salary: 2500,
         department: "Software",
       },
       {
-        id: 2,
+        id: "test-2",
         name: "Ali Zeynalov",
         salary: 3500,
         department: "Low",
       },
       {
-        id: 3,
+        id: "test-3",
         name: "Zumrud Selimova",
         salary: 2700,
         department: "Agile",
       },
       {
-        id: 4,
+        id: "test-4",
         name: "Nahid Nebiyev",
         salary: 1500,
-        department: "Marketing", 
+        department: "Marketing",
       },
     ],
 

@@ -6,12 +6,12 @@ import UserConsumer from "./context";
 class User extends Component {
   static defaultProps = {
     name: "No info!",
-    salary: 0,
+    salary: "No info!",
     department: "No info!",
   };
 
   state = {
-    isVisible: false,
+    isVisible: false,   
   };
 
   onclickEvent = (e) => {
@@ -73,7 +73,7 @@ class User extends Component {
 }
 
 User.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   salary: PropTypes.number.isRequired,
   department: PropTypes.string.isRequired,
