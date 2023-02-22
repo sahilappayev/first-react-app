@@ -1,22 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
-import Users from "./components/Users";
-import Navbar from "./components/Navbar";
-import AddUser from "./components/AddUser";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ErrorPage from "./pages/ErrorPage";
+import Navbar from "./layout/Navbar";
+import { RouterProvider } from "react-router-dom";
+import Router from "./components/Router";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Users />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "/add",
-    element: <AddUser />,
-  },
-]);
 
 class App extends Component {
   render() {
@@ -24,7 +11,7 @@ class App extends Component {
       <div className="container">
         <Navbar title="My First React App!" />
         <hr />
-        <RouterProvider router={router} />
+        <Router/>
       </div>
     );
   }

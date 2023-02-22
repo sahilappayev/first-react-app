@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import posed from "react-pose";
-import UserConsumer from "./context";
+import UserConsumer from "../components/context";
 
 const Animation = posed.div({
   visible: {
@@ -19,12 +19,13 @@ const Animation = posed.div({
 
 var uniqid = require("uniqid");
 
-export class AddUser extends Component {
+class AddUser extends Component {
   state = {
     visible: false,
     name: "",
     salary: 0,
     department: "",
+    error: false,
   };
 
   changeVisibility = (e) => {
@@ -39,22 +40,34 @@ export class AddUser extends Component {
     });
   };
 
+  validateUser = (user) => {
+    if (user.name === "" || user.salary === "" || user.department === "") {
+      return false;
+    }
+    return true;
+  };
+
   addUser = (dispatch, e) => {
     e.preventDefault();
     const { name, salary, department } = this.state;
+    const newUser = {
+      id: uniqid(),
+      name,
+      salary,
+      department,
+    };
+    if (!this.validateUser(newUser)) {
+      this.setState({ error: true });
+      return;
+    }
     dispatch({
       type: "ADD_USER",
-      payload: {
-        id: uniqid(),
-        name,
-        salary,
-        department,
-      },
+      payload: newUser,
     });
   };
 
   render() {
-    const { visible, name, salary, department } = this.state;
+    const { visible, name, salary, department, error } = this.state;
     return (
       <UserConsumer>
         {(value) => {
@@ -71,9 +84,15 @@ export class AddUser extends Component {
               <Animation pose={visible ? "visible" : "hidden"}>
                 <div className="card">
                   <div className="card-header">
-                    <h1> Add User Form </h1>
+                    <h1> Add New User </h1>
                   </div>
                   <div className="card-body">
+                    {error ? (
+                      <div className="alert alert-danger">
+                        Check the values is valid!
+                      </div>
+                    ) : null}
+
                     <form onSubmit={this.addUser.bind(this, dispatch)}>
                       <div className="form-group">
                         <label htmlFor="name"> Name </label>

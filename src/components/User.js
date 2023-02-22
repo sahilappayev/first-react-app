@@ -28,7 +28,7 @@ class User extends Component {
 
   render() {
     // Destructing
-    const { name, salary, department } = this.props;
+    const { id, name, salary, department } = this.props;
     const isVisible = this.state.isVisible;
 
     return (
@@ -61,6 +61,7 @@ class User extends Component {
                   <div className="card-body">
                     <p className="card-text"> Salary: {salary} </p>
                     <p className="card-text"> Department: {department}</p>
+                    <a href={`/edit/${id}`} className="btn btn-primary float-right" >Edit User</a>
                   </div>
                 ) : null}
               </div>
